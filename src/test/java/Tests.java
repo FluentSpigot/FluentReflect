@@ -1,10 +1,10 @@
-import io.github.jwdeveloper.reflect.implementation.FinderFacade;
+import io.github.jwdeveloper.reflect.implementation.FluentReflect;
 import org.junit.jupiter.api.Test;
 
 public class Tests {
     @Test
     public void ShouldFindClass() throws Exception {
-        var reflect = new FinderFacade("1.8.8");
+        var reflect = new FluentReflect("1.8.8");
         var exampleClass = reflect.findClass()
                 .forVersion("1.8.8", finder ->
                 {

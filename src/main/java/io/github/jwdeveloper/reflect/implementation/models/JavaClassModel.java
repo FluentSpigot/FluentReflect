@@ -1,19 +1,18 @@
 package io.github.jwdeveloper.reflect.implementation.models;
 
 import io.github.jwdeveloper.reflect.api.models.ClassModel;
-import io.github.jwdeveloper.reflect.implementation.FinderFacade;
+import io.github.jwdeveloper.reflect.implementation.FluentReflect;
 import io.github.jwdeveloper.reflect.implementation.FluentBuilder;
 import io.github.jwdeveloper.reflect.implementation.builders.JavaClassBuilder;
 import io.github.jwdeveloper.reflect.implementation.builders.JavaConstructorBuilder;
 import io.github.jwdeveloper.reflect.implementation.builders.JavaFieldBuilder;
 import io.github.jwdeveloper.reflect.implementation.builders.JavaMethodBuilder;
-import io.github.jwdeveloper.reflect.implementation.validators.JavaFieldValidator;
 import lombok.Getter;
 
 
 public class JavaClassModel extends ClassModel {
 
-    private final FinderFacade finderFacade;
+    private final FluentReflect finderFacade;
     @Getter
     private final Class<?> classType;
     @Getter
@@ -23,7 +22,7 @@ public class JavaClassModel extends ClassModel {
                           String version) {
         this.apiVersion = version;
         this.classType = instanceClass;
-        this.finderFacade = new FinderFacade(version);
+        this.finderFacade = new FluentReflect(version);
     }
 
     public FluentBuilder<JavaClassBuilder, JavaClassModel> findClass() {

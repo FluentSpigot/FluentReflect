@@ -15,10 +15,10 @@ import io.github.jwdeveloper.reflect.implementation.validators.JavaConstructorVa
 import io.github.jwdeveloper.reflect.implementation.validators.JavaFieldValidator;
 import io.github.jwdeveloper.reflect.implementation.validators.JavaMethodValidator;
 
-public class FinderFacade {
+public class FluentReflect {
 
     private final String version;
-    public FinderFacade(String version)
+    public FluentReflect(String version)
     {
         this.version = version;
     }

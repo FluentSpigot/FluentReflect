@@ -1,4 +1,4 @@
-import io.github.jwdeveloper.reflect.implementation.FinderFacade;
+import io.github.jwdeveloper.reflect.implementation.FluentReflect;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,7 +10,7 @@ public class MatchTests
     @ParameterizedTest
     @ValueSource(strings = {"1.0.0","1.0.1"})
     public void shouldGetParamsBaseOfVersion(String version) throws Exception {
-        var reflect = new FinderFacade(version);
+        var reflect = new FluentReflect(version);
         var classModel = reflect.findClass()
                 .forVersion("1.0.0", finder ->
                 {
