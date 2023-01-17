@@ -1,5 +1,10 @@
-package io.github.jwdeveloper.reflect;public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+package io.github.jwdeveloper.reflect;
+
+import io.github.jwdeveloper.reflect.implementation.FinderFacade;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+
     }
 }
