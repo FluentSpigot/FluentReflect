@@ -1,13 +1,19 @@
 plugins {
     id 'java'
 }
-
+apply plugin: 'maven-publish'
 group 'io.github.jwdeveloper.reflect'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
+
+java {
+    withSourcesJar()
+}
+
 
 dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
