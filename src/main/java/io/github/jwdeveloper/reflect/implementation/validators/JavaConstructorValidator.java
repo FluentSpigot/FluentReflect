@@ -1,5 +1,6 @@
 package io.github.jwdeveloper.reflect.implementation.validators;
 
+import io.github.jwdeveloper.reflect.api.exceptions.ConstructorValidationException;
 import io.github.jwdeveloper.reflect.api.exceptions.ValidationException;
 import io.github.jwdeveloper.reflect.api.validators.ConstructorValidationModel;
 import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
@@ -11,13 +12,13 @@ import java.lang.reflect.*;
 
 public class JavaConstructorValidator  extends JavaValidator implements Validator<ConstructorValidationModel, JavaConstructorModel> {
     @Override
-    public JavaConstructorModel validate(ConstructorValidationModel model, String version) throws Exception {
+    public JavaConstructorModel validate(ConstructorValidationModel model, String version) throws ValidationException {
         var parent = model.getParentClass();
         var result = this.checkClasses(model, parent, Class::getDeclaredConstructors, this::validateMethod);
         if (!result.isValid()) {
-            throw new ValidationException("Constructor not found",result,parent);
+            throw new ConstructorValidationException(model,version,result);
         }
-        return new JavaConstructorModel(result.value(), model.getParameterMatcher());
+        return new JavaConstructorModel(result.getValue(), model.getParameterMatcher());
     }
 
 

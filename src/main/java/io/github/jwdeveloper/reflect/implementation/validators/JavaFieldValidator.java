@@ -1,5 +1,7 @@
 package io.github.jwdeveloper.reflect.implementation.validators;
 
+import io.github.jwdeveloper.reflect.api.exceptions.ConstructorValidationException;
+import io.github.jwdeveloper.reflect.api.exceptions.FieldValidationException;
 import io.github.jwdeveloper.reflect.api.exceptions.ValidationException;
 import io.github.jwdeveloper.reflect.api.validators.FieldValidationModel;
 import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
@@ -15,14 +17,14 @@ import java.lang.reflect.Type;
 
 public class JavaFieldValidator extends JavaValidator implements Validator<FieldValidationModel, JavaFieldModel> {
     @Override
-    public JavaFieldModel validate(FieldValidationModel model, String version) throws Exception {
+    public JavaFieldModel validate(FieldValidationModel model, String version) throws ValidationException {
         var parent = model.getParentClass();
-        var result = this.checkClasses(model, parent, Class::getDeclaredFields, this::validateField);
-        if (!result.isValid()) {
-            throw new ValidationException("Field not found",result,parent);
+        var validation = this.checkClasses(model, parent, Class::getDeclaredFields, this::validateField);
+        if (!validation.isValid()) {
+            throw new FieldValidationException(model, version, validation);
 
         }
-        return new JavaFieldModel(result.value());
+        return new JavaFieldModel(validation.getValue());
     }
 
 

@@ -24,10 +24,7 @@
 
 package io.github.jwdeveloper.reflect.implementation.old.packages;
 
-class Interceptor
-{
 
-}
 /*
 import com.mojang.authlib.GameProfile;
 import io.netty.channel.*;

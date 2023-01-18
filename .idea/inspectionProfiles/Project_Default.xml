@@ -7,6 +7,7 @@
           <option value="org.junit.jupiter:junit-jupiter-engine" />
           <option value="org.junit.jupiter:junit-jupiter-api" />
           <option value="org.jetbrains:annotations" />
+          <option value="org.junit.jupiter:junit-jupiter-params" />
         </list>
       </option>
     </inspection_tool>

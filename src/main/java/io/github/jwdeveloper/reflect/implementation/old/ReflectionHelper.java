@@ -32,8 +32,9 @@ import java.util.function.Supplier;
 
 public class ReflectionHelper {
 
+  /*
   // Server version information
- /* @Getter private final String versionStr;
+  @Getter private final String versionStr;
   @Getter private final ServerVersion version;
 
   private final FieldHandle
@@ -141,13 +142,13 @@ public class ReflectionHelper {
     }
   }
 
-  /**
-   * Find the server's version by looking at craftbukkit's package
-   * @return Version part of the package
+
+   //* Find the server's version by looking at craftbukkit's package
+  // * @return Version part of the package
      private String findVersion() {
     return Bukkit.getServer().getClass().getName().split("\\.")[3];
   }
-  */
+
 
   /**
    * Get the major, minor and revision version numbers the server's running on

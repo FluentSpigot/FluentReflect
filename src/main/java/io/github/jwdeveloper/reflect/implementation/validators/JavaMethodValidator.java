@@ -1,5 +1,7 @@
 package io.github.jwdeveloper.reflect.implementation.validators;
 
+import io.github.jwdeveloper.reflect.api.exceptions.FieldValidationException;
+import io.github.jwdeveloper.reflect.api.exceptions.MethodValidationException;
 import io.github.jwdeveloper.reflect.api.exceptions.ValidationException;
 import io.github.jwdeveloper.reflect.implementation.Visibility;
 import io.github.jwdeveloper.reflect.implementation.models.JavaMethodModel;
@@ -16,13 +18,13 @@ public class JavaMethodValidator extends JavaValidator implements Validator<Meth
 
 
     @Override
-    public JavaMethodModel validate(MethodValidationModel model, String version) throws Exception {
+    public JavaMethodModel validate(MethodValidationModel model, String version) throws ValidationException {
         var parent = model.getParentClass();
         var result = this.checkClasses(model, parent, Class::getMethods, this::validateMethod);
         if (!result.isValid()) {
-            throw new ValidationException("Method not found",result,parent);
+            throw new MethodValidationException(model,version,result);
         }
-        return new JavaMethodModel(result.value(), model.getParameterMatcher());
+        return new JavaMethodModel(result.getValue(), model.getParameterMatcher());
     }
 
 

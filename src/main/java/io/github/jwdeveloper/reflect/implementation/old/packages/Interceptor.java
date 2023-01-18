@@ -23,6 +23,7 @@
  */
 
 package io.github.jwdeveloper.reflect.implementation.old.packages;
+
 /*
 import io.netty.channel.*;
 import lombok.Setter;
@@ -46,11 +47,11 @@ public class Interceptor extends ChannelDuplexHandler {
   @Setter
   private FPacketInterceptor inboundInterceptor, outboundInterceptor;
 
-  /**
-   * Create a new packet interceptor on top of a network channel
-   * @param channel Underlying network channel to intercept data on
-   * @param playerName Name of the player, if it's already known at the time of instantiation
-   * @param operator External packet operator which does all reflective access
+
+  // * Create a new packet interceptor on top of a network channel
+ //  * @param channel Underlying network channel to intercept data on
+ //  * @param playerName Name of the player, if it's already known at the time of instantiation
+ //  * @param operator External packet operator which does all reflective access
 
   public Interceptor(Channel channel, String playerName, IPacketOperator operator) {
     this.playerName = playerName;
@@ -107,10 +108,10 @@ public class Interceptor extends ChannelDuplexHandler {
     super.write(channelHandlerContext, o, channelPromise);
   }
 
-  /**
-   * Calls the consumer with the pipe of the underlying channel if
-   * the channel is present and hasn't yet been garbage-collected
-   * @param action Consumer of the pipe
+
+  // * Calls the consumer with the pipe of the underlying channel if
+ //  * the channel is present and hasn't yet been garbage-collected
+  // * @param action Consumer of the pipe
 
   private void ifPipePresent(Consumer<ChannelPipeline> action) {
     Channel ch = channel.get();
@@ -122,8 +123,8 @@ public class Interceptor extends ChannelDuplexHandler {
   }
 
 
-   * Attaches this interceptor to it's underlying channel
-   * @param name Name to attach as within the pipeline
+//   * Attaches this interceptor to it's underlying channel
+ //  * @param name Name to attach as within the pipeline
 
   public void attach(String name) {
     if (this.handlerName != null)
@@ -141,7 +142,7 @@ public class Interceptor extends ChannelDuplexHandler {
   }
 
 
-   Detaches this interceptor from it's underlying channel
+ //  Detaches this interceptor from it's underlying channel
 
   public void detach() {
     if (this.handlerName == null)
@@ -161,9 +162,9 @@ public class Interceptor extends ChannelDuplexHandler {
   }
 
 
-   * Used to send a packet using a network manager instance
-   * @param packet Packet instance to send
-   * @param completion Optional completion callback, nullable
+  // * Used to send a packet using a network manager instance
+  // * @param packet Packet instance to send
+  // * @param completion Optional completion callback, nullable
 
   public void sendPacket(Object packet, @Nullable Runnable completion) throws Exception {
     if (networkManager == null)
@@ -172,4 +173,4 @@ public class Interceptor extends ChannelDuplexHandler {
     this.operator.sendPacket(packet, completion, networkManager);
   }
 }
-/*/
+*/

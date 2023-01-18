@@ -27,12 +27,6 @@ public class JavaValidator {
             }
             classToCheck = classToCheck.getSuperclass();
         }
-        var builder = new StringBuilder();
-        for(var log : logs)
-        {
-            builder.append("Not valid: " + log.value() + " becaouse " + log.message() + " for " + modelToCheck.toString());
-            builder.append(System.lineSeparator());
-        }
-        return new ValidationResult<>(false,null,builder.toString());
+        return new ValidationResult(false,null,"not found",logs);
     }
 }

@@ -1,6 +1,7 @@
 package io.github.jwdeveloper.reflect.implementation;
 
 import io.github.jwdeveloper.reflect.api.builders.common.Buildable;
+import io.github.jwdeveloper.reflect.api.exceptions.ValidationException;
 import io.github.jwdeveloper.reflect.api.finders.Finder;
 import io.github.jwdeveloper.reflect.api.validators.Validator;
 
@@ -52,7 +53,7 @@ public class FluentBuilder<Builder extends Buildable<?>, Result> {
         return this;
     }
 
-    public Result find() throws Exception {
+    public Result find() throws ValidationException {
         var model = builder.build();
         var result = (Result) validator.validate(model, currentVersion);
         return result;
