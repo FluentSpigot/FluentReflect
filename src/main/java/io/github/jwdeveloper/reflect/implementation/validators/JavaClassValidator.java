@@ -2,9 +2,12 @@ package io.github.jwdeveloper.reflect.implementation.validators;
 
 import io.github.jwdeveloper.reflect.api.exceptions.ClassValidationException;
 import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
+import io.github.jwdeveloper.reflect.implementation.Visibility;
 import io.github.jwdeveloper.reflect.implementation.models.JavaClassModel;
 import io.github.jwdeveloper.reflect.api.validators.Validator;
 import io.github.jwdeveloper.reflect.api.validators.ClassValidationModel;
+
+import java.lang.reflect.Modifier;
 
 public class JavaClassValidator implements Validator<ClassValidationModel, JavaClassModel> {
 
@@ -16,8 +19,10 @@ public class JavaClassValidator implements Validator<ClassValidationModel, JavaC
         }
         catch (Exception e)
         {
-            throw new ClassValidationException(model, version, new ValidationResult<Class<?>>(false,null,e.getMessage()));
+            throw new ClassValidationException(model, version, new ValidationResult<Class<?>>(false,Object.class,e.getMessage()));
         }
     }
+
+
 
 }

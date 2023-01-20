@@ -18,7 +18,7 @@ public class FieldValidationException extends ValidationException
 
     public FieldValidationException(FieldValidationModel model, String version, ValidationResult<Field> validationResult)
     {
-        super("Constructor validation error");
+        super("Field validation error");
         this.model = model;
         this.version = version;
         this.validationResult = validationResult;

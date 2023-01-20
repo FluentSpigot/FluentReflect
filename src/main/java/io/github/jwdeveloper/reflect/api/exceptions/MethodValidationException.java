@@ -18,7 +18,7 @@ public class MethodValidationException extends ValidationException
 
     public MethodValidationException(MethodValidationModel model, String version, ValidationResult<Method> validationResult)
     {
-        super("Constructor validation error");
+        super("Method validation error");
         this.model = model;
         this.version = version;
         this.validationResult = validationResult;

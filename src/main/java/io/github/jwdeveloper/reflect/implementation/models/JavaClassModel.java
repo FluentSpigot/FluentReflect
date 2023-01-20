@@ -10,7 +10,7 @@ import io.github.jwdeveloper.reflect.implementation.builders.JavaMethodBuilder;
 import lombok.Getter;
 
 
-public class JavaClassModel extends ClassModel {
+public class JavaClassModel implements ClassModel {
 
     private final FluentReflect finderFacade;
     @Getter

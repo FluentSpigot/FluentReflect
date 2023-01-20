@@ -6,7 +6,12 @@ import io.github.jwdeveloper.reflect.api.builders.common.Buildable;
 import io.github.jwdeveloper.reflect.api.matcher.ParameterMatcher;
 import io.github.jwdeveloper.reflect.api.validators.FieldValidationModel;
 
+import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
 import io.github.jwdeveloper.reflect.implementation.Visibility;
+
+import java.io.File;
+import java.lang.reflect.Field;
+import java.util.function.Consumer;
 
 public class JavaFieldBuilder implements FieldBuilder, Buildable<FieldValidationModel> {
 
@@ -84,6 +89,13 @@ public class JavaFieldBuilder implements FieldBuilder, Buildable<FieldValidation
     @Override
     public FieldBuilder withFinal() {
         model.setFinal(true);
+        return this;
+    }
+
+    @Override
+    public FieldBuilder onFound(Consumer<ValidationResult<Field>> event)
+    {
+        model.setOnFound(event);
         return this;
     }
 

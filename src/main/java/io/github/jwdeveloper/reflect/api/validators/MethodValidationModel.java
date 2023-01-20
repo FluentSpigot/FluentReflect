@@ -8,16 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class MethodValidationModel
+public class MethodValidationModel extends ValidationModel
 {
     private Class<?> parentClass;
     private String superClass;
     private String returnType;
-    private String name;
-    private Visibility visibility = Visibility.PUBLIC;
-    private boolean isStatic;
-    private boolean isAbstract;
-    private boolean isFinal;
     private ParameterMatcher parameterMatcher =(a)-> {return a;};
     private List<String> generics = new ArrayList<>();
     private List<ParameterModel> parameterModels = new ArrayList<>();
@@ -29,13 +24,5 @@ public class MethodValidationModel
 
     public static record ParameterModel(String type, String name, int index){};
 
-    public boolean hasName()
-    {
-        return name != null;
-    }
 
-    public boolean hasReturnType()
-    {
-        return returnType != null;
-    }
 }

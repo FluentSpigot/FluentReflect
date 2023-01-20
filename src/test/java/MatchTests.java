@@ -3,12 +3,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class MatchTests
-{
+public class MatchTests {
 
 
     @ParameterizedTest
-    @ValueSource(strings = {"1.0.0","1.0.1"})
+    @ValueSource(strings = {"1.0.0", "1.0.1"})
     public void shouldGetParamsBaseOfVersion(String version) throws Exception {
         var reflect = new FluentReflect(version);
         var classModel = reflect.findClass()
@@ -31,7 +30,7 @@ public class MatchTests
                 })
                 .find();
 
-        var instance = constructorModel.newInstance(1,"hello");
+        var instance = constructorModel.newInstance(1, "hello");
         Assertions.assertNotNull(instance);
 
         var method = classModel.findMethod()
@@ -42,21 +41,28 @@ public class MatchTests
                 .forVersion("1.0.1", finder ->
                 {
                     finder.withName("publicStuffV1");
-                    finder.withParameterMatcher(e->
+                    finder.withParameterMatcher(e ->
                     {
-                        return new Object[]{e[0],e[1]};
+                        return new Object[]{e[0], e[1]};
                     });
                 })
                 .find();
 
+        var field = classModel.findField()
+                .forVersion("1.0.1", finder ->
+                {
+                    finder.withName("myValue");
+                })
+                .tryFind();
 
 
+        var result = method.invoke(instance, 1, "siema", false);
+        if (field != null) {
+            Assertions.assertEquals(Integer.class, field.getField().getType());
 
-        var result = method.invoke(instance,1,"siema",false);
+        }
         Assertions.assertEquals(result, "it works");
     }
-
-
 
 
 }

@@ -4,25 +4,18 @@ import io.github.jwdeveloper.reflect.api.matcher.ParameterMatcher;
 import io.github.jwdeveloper.reflect.implementation.Visibility;
 import lombok.Data;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Data
-public class FieldValidationModel
+public class FieldValidationModel extends ValidationModel
 {
     private Class<?> parentClass;
-    private String type;
-    private String name;
-    private Visibility visibility = Visibility.PUBLIC;
-    private boolean isStatic;
-    private boolean isAbstract;
-    private boolean isFinal;
+    private Class<?> classType;
+
+    private Consumer<ValidationResult<Field>> onFound;
     private ParameterMatcher parameterMatcher =(a)-> {return a;};
     private List<String> generics = new ArrayList<>();
-
-
-    public boolean hasName()
-    {
-        return name != null;
-    }
 }

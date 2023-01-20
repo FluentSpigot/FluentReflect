@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class JavaMethodModel extends MethodModel
+public class JavaMethodModel implements MethodModel
 {
     @Getter
     private final Method method;

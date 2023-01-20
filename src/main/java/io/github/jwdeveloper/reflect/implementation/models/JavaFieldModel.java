@@ -1,8 +1,11 @@
 package io.github.jwdeveloper.reflect.implementation.models;
 
+import lombok.Getter;
+
 import java.lang.reflect.Field;
 
 public class JavaFieldModel {
+    @Getter
     private final Field field;
 
     public JavaFieldModel(Field field) {

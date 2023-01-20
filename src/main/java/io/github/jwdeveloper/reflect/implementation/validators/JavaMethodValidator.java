@@ -30,8 +30,6 @@ public class JavaMethodValidator extends JavaValidator implements Validator<Meth
 
     private ValidationResult validateMethod(Method method, MethodValidationModel model) {
 
-        if (model.getVisibility() == Visibility.PUBLIC && !Modifier.isPublic(method.getModifiers()))
-            return new ValidationResult(false, method, "is not public");
 
         if (model.hasReturnType() && !model.getReturnType().equalsIgnoreCase(method.getReturnType().getName()))
             return new ValidationResult(false, method, "different return type");
@@ -39,45 +37,25 @@ public class JavaMethodValidator extends JavaValidator implements Validator<Meth
         if (model.hasName() && !method.getName().equalsIgnoreCase(model.getName()))
             return new ValidationResult(false, method, "name difference");
 
-        if (model.isStatic() && !Modifier.isStatic(method.getModifiers()))
-            return new ValidationResult(false, method, "is not static");
 
-        if (model.isAbstract() && !Modifier.isAbstract(method.getModifiers()))
-            return new ValidationResult(false, method, "is not abstract");
-
-        if (model.getVisibility() == Visibility.PROTECTED && !Modifier.isProtected(method.getModifiers()))
-            return new ValidationResult(false, method, "is not protected");
-
-        if (model.getVisibility() == Visibility.PRIVATE && !Modifier.isPrivate(method.getModifiers()))
-            return new ValidationResult(false, method, "is not private");
-
-
-        var numParameters = model.getParameterModels().size();
-
-        if(numParameters > 0)
-        {
-            var parameters = method.getParameterTypes();
-            if (numParameters != parameters.length)
-                return new ValidationResult(false, method, "different parameter size");
-
-            for (int i = 0; i < numParameters; i++) {
-                if (!model.getParameterModels().get(i).type().equals(parameters[i].getTypeName()))
-                    return new ValidationResult(false, method, "different type for parameter " + i);
-            }
+        var visibilityResult = checkVisibility(method, model.getVisibility());
+        if (!visibilityResult.isValid()) {
+            return visibilityResult;
         }
 
+        visibilityResult = checkModifiers(method, model);
+        if (!visibilityResult.isValid()) {
+            return visibilityResult;
+        }
 
-        int numGenerics = model.getGenerics().size();
-        if (numGenerics > 0) {
-            Type[] types = ((ParameterizedType) method.getGenericReturnType()).getActualTypeArguments();
+        visibilityResult = checkParameters(method, model.getParameterModels());
+        if (!visibilityResult.isValid()) {
+            return visibilityResult;
+        }
 
-            if (types.length < numGenerics)
-                return new ValidationResult(false, method, "different generic parameter size");
-
-            for (int i = 0; i < numGenerics; i++) {
-                if (!model.getGenerics().get(i).equals(((Class<?>) types[i]).getTypeName()))
-                    return new ValidationResult(false, method, "different name for parameter " + i);
-            }
+        visibilityResult = checkGenericParameters(method, model.getGenerics());
+        if (!visibilityResult.isValid()) {
+            return visibilityResult;
         }
 
         return new ValidationResult(true, method, "found");
