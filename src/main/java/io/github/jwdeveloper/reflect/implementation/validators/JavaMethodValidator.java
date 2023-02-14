@@ -52,6 +52,10 @@ public class JavaMethodValidator extends JavaValidator implements Validator<Meth
             return visibilityResult;
         }
 
+        if (model.getParameterCount() != 0 && model.getParameterCount() != method.getParameterCount()) {
+            return new ValidationResult(false, method, "Different parameter count");
+        }
+
         visibilityResult = checkGenericParameters(method, model.getGenerics());
         if (!visibilityResult.isValid()) {
             return visibilityResult;

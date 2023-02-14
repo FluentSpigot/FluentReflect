@@ -37,7 +37,7 @@ public class JavaConstructorBuilder implements ConstructorBuilder<JavaConstructo
 
     @Override
     public JavaConstructorBuilder withParameterCount(int parameterCount) {
-        model.setVisibility(Visibility.PACKET_PRIVATE);
+        model.setParameterCount(parameterCount);
         return this;
     }
 

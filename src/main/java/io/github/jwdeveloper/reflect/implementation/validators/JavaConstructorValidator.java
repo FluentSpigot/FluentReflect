@@ -30,13 +30,13 @@ public class JavaConstructorValidator extends JavaValidator implements Validator
             return visibilityResult;
         }
 
-        if (model.getParameterCount() != 0 && model.getParameterCount() != constructor.getParameterCount()) {
-            return new ValidationResult(false, constructor, "Different parameter count");
-        }
-
         visibilityResult = checkParameters(constructor, model.getParameterModels());
         if (!visibilityResult.isValid()) {
             return visibilityResult;
+        }
+
+        if (model.getParameterCount() != 0 && model.getParameterCount() != constructor.getParameterCount()) {
+            return new ValidationResult(false, constructor, "Different parameter count");
         }
 
         visibilityResult = checkGenericParameters(constructor, model.getGenerics());
