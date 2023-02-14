@@ -1,18 +1,16 @@
 package io.github.jwdeveloper.reflect.implementation.builders;
 
 import io.github.jwdeveloper.reflect.api.builders.ClassBuilder;
-import io.github.jwdeveloper.reflect.implementation.Visibility;
 import io.github.jwdeveloper.reflect.api.builders.common.Buildable;
 import io.github.jwdeveloper.reflect.api.validators.ClassValidationModel;
+import io.github.jwdeveloper.reflect.implementation.Visibility;
 
 import java.util.Arrays;
 
-public class JavaClassBuilder implements ClassBuilder, Buildable<ClassValidationModel>
-{
+public class JavaClassBuilder implements ClassBuilder, Buildable<ClassValidationModel> {
     private ClassValidationModel model;
 
-    public JavaClassBuilder()
-    {
+    public JavaClassBuilder() {
         model = new ClassValidationModel();
     }
 
@@ -31,8 +29,7 @@ public class JavaClassBuilder implements ClassBuilder, Buildable<ClassValidation
     public ClassBuilder withInterface(Class<?>... _interfaces) {
         var names = Arrays.stream(_interfaces)
                 .map(Class::getName)
-                .toList()
-                .toArray(new String[_interfaces.length]);
+                .toArray(String[]::new);
         return withInterface(names);
     }
 
@@ -55,8 +52,7 @@ public class JavaClassBuilder implements ClassBuilder, Buildable<ClassValidation
     }
 
     @Override
-    public ClassBuilder withPackagePrivate()
-    {
+    public ClassBuilder withPackagePrivate() {
         model.setVisibility(Visibility.PACKET_PRIVATE);
         return this;
     }
@@ -86,8 +82,7 @@ public class JavaClassBuilder implements ClassBuilder, Buildable<ClassValidation
     }
 
     @Override
-    public ClassValidationModel build()
-    {
+    public ClassValidationModel build() {
         return model;
     }
 

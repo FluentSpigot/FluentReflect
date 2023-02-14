@@ -69,7 +69,7 @@ public class JavaValidator {
             return new ValidationResult(false, value, "different parameter size");
 
         for (int i = 0; i < numParameters; i++) {
-            if (!parameters.get(i).type().equals(valueParameters[i].getTypeName()))
+            if (!parameters.get(i).getType().equals(valueParameters[i].getTypeName()))
                 return new ValidationResult(false, value, "different type for parameter " + i);
         }
         return new ValidationResult(true, value, "valid");
