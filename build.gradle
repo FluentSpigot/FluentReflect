@@ -4,7 +4,7 @@ plugins {
 }
 apply plugin: 'maven-publish'
 group 'io.github.jwdeveloper.reflect'
-version '1.0.0'
+version '1.0.7'
 
 repositories {
     mavenCentral()
