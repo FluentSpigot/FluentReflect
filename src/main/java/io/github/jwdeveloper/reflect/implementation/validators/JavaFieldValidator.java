@@ -10,7 +10,7 @@ import io.github.jwdeveloper.reflect.api.validators.Validator;
 import io.github.jwdeveloper.reflect.implementation.Visibility;
 import io.github.jwdeveloper.reflect.implementation.models.JavaClassModel;
 import io.github.jwdeveloper.reflect.implementation.models.JavaFieldModel;
-import io.github.jwdeveloper.reflect.implementation.old.Primitives;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
