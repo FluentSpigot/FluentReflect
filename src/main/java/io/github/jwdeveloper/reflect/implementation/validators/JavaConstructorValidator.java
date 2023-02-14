@@ -5,10 +5,9 @@ import io.github.jwdeveloper.reflect.api.exceptions.ValidationException;
 import io.github.jwdeveloper.reflect.api.validators.ConstructorValidationModel;
 import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
 import io.github.jwdeveloper.reflect.api.validators.Validator;
-import io.github.jwdeveloper.reflect.implementation.Visibility;
 import io.github.jwdeveloper.reflect.implementation.models.JavaConstructorModel;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
 
 
 public class JavaConstructorValidator extends JavaValidator implements Validator<ConstructorValidationModel, JavaConstructorModel> {
@@ -29,6 +28,10 @@ public class JavaConstructorValidator extends JavaValidator implements Validator
         var visibilityResult = checkVisibility(constructor, model.getVisibility());
         if (!visibilityResult.isValid()) {
             return visibilityResult;
+        }
+
+        if (model.getParameterCount() != 0 && model.getParameterCount() != constructor.getParameterCount()) {
+            return new ValidationResult(false, constructor, "Different parameter count");
         }
 
         visibilityResult = checkParameters(constructor, model.getParameterModels());

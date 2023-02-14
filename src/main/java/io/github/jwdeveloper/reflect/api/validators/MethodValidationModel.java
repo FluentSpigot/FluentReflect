@@ -14,6 +14,7 @@ public class MethodValidationModel extends ValidationModel {
     private Class<?> parentClass;
     private String superClass;
     private String returnType;
+    private int parameterCount;
     private ParameterMatcher parameterMatcher = (a) -> {
         return a;
     };

@@ -11,6 +11,18 @@ public class ExampleClass extends ExampleClassParent implements ExampleClassInte
 
     }
 
+    private ExampleClass(int a, String b, boolean c)
+    {
+
+    }
+
+
+    private ExampleClass(int a, String b, boolean c, String d)
+    {
+
+    }
+
+
     public String publicStuff(int a, String b, boolean c) {
         return "it works";
     }

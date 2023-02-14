@@ -63,6 +63,10 @@ public class JavaValidator {
 
     protected <T extends Executable> ValidationResult checkParameters(T value, List<MethodValidationModel.ParameterModel> parameters) {
         var numParameters = parameters.size();
+        if(numParameters == 0)
+        {
+            return new ValidationResult(true, value, "valid");
+        }
         var valueParameters = value.getParameterTypes();
 
         if (numParameters != valueParameters.length)

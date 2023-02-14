@@ -36,6 +36,12 @@ public class JavaConstructorBuilder implements ConstructorBuilder<JavaConstructo
     }
 
     @Override
+    public JavaConstructorBuilder withParameterCount(int parameterCount) {
+        model.setVisibility(Visibility.PACKET_PRIVATE);
+        return this;
+    }
+
+    @Override
     public JavaConstructorBuilder withPublic() {
         model.setVisibility(Visibility.PUBLIC);
         return this;
@@ -66,6 +72,11 @@ public class JavaConstructorBuilder implements ConstructorBuilder<JavaConstructo
     @Override
     public JavaConstructorBuilder withParameter(Class<?> type, String name) {
         return withParameter(type.getName(), name);
+    }
+
+    @Override
+    public JavaConstructorBuilder withParameter(String type) {
+        return withParameter(type, "");
     }
 
     @Override

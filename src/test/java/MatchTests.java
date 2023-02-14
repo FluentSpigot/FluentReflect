@@ -30,16 +30,26 @@ public class MatchTests {
                 })
                 .find();
 
+        var constructorModelAnotherWay = classModel.findConstructor()
+                .forAnyVersion(finder ->
+                {
+                    finder.withPrivate();
+                    finder.withParameterCount(2);
+                })
+                .find();
+
         var instance = constructorModel.newInstance(1, "hello");
         Assertions.assertNotNull(instance);
 
         var method = classModel.findMethod()
                 .forVersion("1.0.0", finder ->
                 {
+                    finder.withPublic();
                     finder.withName("publicStuff");
                 })
                 .forVersion("1.0.1", finder ->
                 {
+                    finder.withPublic();
                     finder.withName("publicStuffV1");
                     finder.withParameterMatcher(e ->
                     {

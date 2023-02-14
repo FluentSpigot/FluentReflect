@@ -37,7 +37,6 @@ public class JavaMethodValidator extends JavaValidator implements Validator<Meth
         if (model.hasName() && !method.getName().equalsIgnoreCase(model.getName()))
             return new ValidationResult(false, method, "name difference");
 
-
         var visibilityResult = checkVisibility(method, model.getVisibility());
         if (!visibilityResult.isValid()) {
             return visibilityResult;

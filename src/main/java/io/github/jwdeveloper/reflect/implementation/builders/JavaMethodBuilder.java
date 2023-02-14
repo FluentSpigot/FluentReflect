@@ -83,6 +83,18 @@ public class JavaMethodBuilder implements MethodBuilder, Buildable<MethodValidat
     }
 
     @Override
+    public MethodBuilder withParameterCount(int parameterCount) {
+        model.setParameterCount(parameterCount);
+        return this;
+    }
+
+    @Override
+    public MethodBuilder withParameter(String type) {
+        model.getParameterModels().add(new MethodValidationModel.ParameterModel(type, "", -1));
+        return this;
+    }
+
+    @Override
     public MethodBuilder withParameter(String type, String name) {
         model.getParameterModels().add(new MethodValidationModel.ParameterModel(type, name, -1));
         return this;
