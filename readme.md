@@ -7,11 +7,11 @@
 
 FluentReflect is a Java library designed to simplify the usage of reflection in Java programs. With FluentReflect, developers can easily search for and manipulate
 
- - classes
- - fields
- - methods
- - contructors
- - enums
+- classes
+- fields
+- methods
+- contructors
+- enums
 
 
 without having to write verbose and complex reflection code.
@@ -38,10 +38,10 @@ public class ExampleClass
 
     protected String helloWorld()
     {
-       return "Hello world my name is "+name;
+        return "Hello world my name is "+name;
     }
 }
- 
+
 ```
 
 
