@@ -1,5 +1,6 @@
 package io.github.jwdeveloper.reflect.implementation;
 
+import io.github.jwdeveloper.reflect.api.VersionCompare;
 import io.github.jwdeveloper.reflect.api.builders.common.Buildable;
 import io.github.jwdeveloper.reflect.api.exceptions.ValidationException;
 import io.github.jwdeveloper.reflect.api.finders.Finder;
@@ -9,14 +10,17 @@ public class FluentBuilder<Builder extends Buildable<?>, Result> {
     private final Builder builder;
     private final String currentVersion;
     private final Validator validator;
+    private final VersionCompare versionCompare;
 
     public FluentBuilder(String version,
                          Validator validator,
-                         Builder builder)
+                         Builder builder,
+                         VersionCompare versionCompare)
     {
         this.currentVersion = version;
         this.validator = validator;
         this.builder = builder;
+        this.versionCompare = versionCompare;
     }
 
 
@@ -40,16 +44,31 @@ public class FluentBuilder<Builder extends Buildable<?>, Result> {
     public FluentBuilder<Builder, Result> forVersionRange(String fromVersion,
                                                           String toVersion,
                                                           Finder<Builder> consumer) {
+        if(!(versionCompare.isHigher(currentVersion,fromVersion) && versionCompare.isLower(currentVersion,toVersion)))
+        {
+            return this;
+        }
+        consumer.find(builder);
         return this;
     }
 
     public FluentBuilder<Builder, Result> forVersionLowerThen(String version,
                                                               Finder<Builder> consumer) {
+        if(versionCompare.isLower(currentVersion, version))
+        {
+            consumer.find(builder);
+            return this;
+        }
         return this;
     }
 
-    public FluentBuilder<Builder, Result> forVersionGraterThen(String version,
+    public FluentBuilder<Builder, Result> forVersionHigherThen(String version,
                                                                Finder<Builder> consumer) {
+        if(versionCompare.isHigher(currentVersion, version))
+        {
+            consumer.find(builder);
+            return this;
+        }
         return this;
     }
 

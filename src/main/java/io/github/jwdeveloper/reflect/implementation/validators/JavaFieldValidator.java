@@ -1,14 +1,11 @@
 package io.github.jwdeveloper.reflect.implementation.validators;
 
-import io.github.jwdeveloper.reflect.api.exceptions.ClassValidationException;
-import io.github.jwdeveloper.reflect.api.exceptions.ConstructorValidationException;
 import io.github.jwdeveloper.reflect.api.exceptions.FieldValidationException;
 import io.github.jwdeveloper.reflect.api.exceptions.ValidationException;
 import io.github.jwdeveloper.reflect.api.validators.FieldValidationModel;
 import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
 import io.github.jwdeveloper.reflect.api.validators.Validator;
-import io.github.jwdeveloper.reflect.implementation.Visibility;
-import io.github.jwdeveloper.reflect.implementation.models.JavaClassModel;
+import io.github.jwdeveloper.reflect.api.builders.common.Visibility;
 import io.github.jwdeveloper.reflect.implementation.models.JavaFieldModel;
 
 
@@ -22,7 +19,6 @@ public class JavaFieldValidator extends JavaValidator implements Validator<Field
     @Override
     public JavaFieldModel validate(FieldValidationModel model, String version) throws ValidationException {
         var parent = model.getParentClass();
-
         try
         {
             var clazz = Class.forName(model.getType(), false, this.getClass().getClassLoader());

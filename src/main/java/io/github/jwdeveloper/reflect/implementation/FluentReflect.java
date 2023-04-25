@@ -1,51 +1,51 @@
 package io.github.jwdeveloper.reflect.implementation;
 
 
-import io.github.jwdeveloper.reflect.implementation.builders.JavaConstructorBuilder;
-import io.github.jwdeveloper.reflect.implementation.builders.JavaFieldBuilder;
-import io.github.jwdeveloper.reflect.implementation.builders.JavaMethodBuilder;
-import io.github.jwdeveloper.reflect.implementation.models.JavaClassModel;
+import io.github.jwdeveloper.reflect.api.VersionCompare;
+import io.github.jwdeveloper.reflect.api.validators.EnumValidatorModel;
+import io.github.jwdeveloper.reflect.implementation.builders.*;
+import io.github.jwdeveloper.reflect.implementation.models.*;
 import io.github.jwdeveloper.reflect.api.validators.ClassValidationModel;
-import io.github.jwdeveloper.reflect.implementation.builders.JavaClassBuilder;
-import io.github.jwdeveloper.reflect.implementation.models.JavaConstructorModel;
-import io.github.jwdeveloper.reflect.implementation.models.JavaFieldModel;
-import io.github.jwdeveloper.reflect.implementation.models.JavaMethodModel;
-import io.github.jwdeveloper.reflect.implementation.validators.JavaClassValidator;
-import io.github.jwdeveloper.reflect.implementation.validators.JavaConstructorValidator;
-import io.github.jwdeveloper.reflect.implementation.validators.JavaFieldValidator;
-import io.github.jwdeveloper.reflect.implementation.validators.JavaMethodValidator;
+import io.github.jwdeveloper.reflect.implementation.utils.DefaultVersionCompare;
+import io.github.jwdeveloper.reflect.implementation.validators.*;
 import lombok.Getter;
 
 public class FluentReflect {
 
     @Getter
     private final String version;
-    public FluentReflect(String version)
+    private final VersionCompare versionCompare;
+
+    public FluentReflect(String version, VersionCompare versionCompare)
     {
         this.version = version;
+        this.versionCompare = versionCompare;
+    }
+
+    public FluentReflect(String version)
+    {
+      this(version, new DefaultVersionCompare());
     }
 
     public FluentBuilder<JavaClassBuilder, JavaClassModel> findClass() {
         return new FluentBuilder<JavaClassBuilder, JavaClassModel>(
                 version,
                 new JavaClassValidator(),
-                new JavaClassBuilder()
+                new JavaClassBuilder(),
+                versionCompare
         );
     }
 
-    public FluentBuilder<JavaClassBuilder, ClassValidationModel> findEnum() {
-        return new FluentBuilder<JavaClassBuilder, ClassValidationModel>(
-                version,
-                new JavaClassValidator(),
-                new JavaClassBuilder()
-        );
+    public FluentBuilder<JavaEnumBuilder, JavaEnumModel> findEnum() {
+        return findEnum(null);
     }
 
-    public FluentBuilder<JavaClassBuilder, ClassValidationModel> findAnnotation() {
-        return new FluentBuilder<JavaClassBuilder, ClassValidationModel>(
+    public FluentBuilder<JavaEnumBuilder, JavaEnumModel> findEnum(Class<?> locationClass) {
+        return new FluentBuilder<JavaEnumBuilder, JavaEnumModel>(
                 version,
-                new JavaClassValidator(),
-                new JavaClassBuilder()
+                new JavaEnumValidator(),
+                new JavaEnumBuilder(locationClass),
+                versionCompare
         );
     }
 
@@ -54,7 +54,8 @@ public class FluentReflect {
         return new FluentBuilder<JavaMethodBuilder, JavaMethodModel>(
                 version,
                 new JavaMethodValidator(),
-                new JavaMethodBuilder(locationClass)
+                new JavaMethodBuilder(locationClass),
+                versionCompare
         );
     }
 
@@ -62,7 +63,8 @@ public class FluentReflect {
         return new FluentBuilder<JavaFieldBuilder, JavaFieldModel>(
                 version,
                 new JavaFieldValidator(),
-                new JavaFieldBuilder(locationClass)
+                new JavaFieldBuilder(locationClass),
+                versionCompare
         );
     }
 
@@ -70,7 +72,8 @@ public class FluentReflect {
         return new FluentBuilder<JavaConstructorBuilder, JavaConstructorModel>(
                 version,
                 new JavaConstructorValidator(),
-                new JavaConstructorBuilder(locationClass)
+                new JavaConstructorBuilder(locationClass),
+                versionCompare
         );
     }
 }

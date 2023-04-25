@@ -1,6 +1,6 @@
 package io.github.jwdeveloper.reflect.api.validators;
 
-import io.github.jwdeveloper.reflect.implementation.Visibility;
+import io.github.jwdeveloper.reflect.api.builders.common.Visibility;
 import lombok.Data;
 
 import java.util.HashMap;

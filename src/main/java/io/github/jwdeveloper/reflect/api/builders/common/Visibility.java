@@ -1,4 +1,4 @@
-package io.github.jwdeveloper.reflect.implementation;
+package io.github.jwdeveloper.reflect.api.builders.common;
 
 public enum Visibility
 {

@@ -3,12 +3,12 @@ package io.github.jwdeveloper.reflect.implementation.builders;
 import io.github.jwdeveloper.reflect.api.builders.ClassBuilder;
 import io.github.jwdeveloper.reflect.api.builders.common.Buildable;
 import io.github.jwdeveloper.reflect.api.validators.ClassValidationModel;
-import io.github.jwdeveloper.reflect.implementation.Visibility;
+import io.github.jwdeveloper.reflect.api.builders.common.Visibility;
 
 import java.util.Arrays;
 
 public class JavaClassBuilder implements ClassBuilder, Buildable<ClassValidationModel> {
-    private ClassValidationModel model;
+    private final ClassValidationModel model;
 
     public JavaClassBuilder() {
         model = new ClassValidationModel();

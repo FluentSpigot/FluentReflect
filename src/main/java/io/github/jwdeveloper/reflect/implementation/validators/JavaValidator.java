@@ -4,7 +4,7 @@ import io.github.jwdeveloper.reflect.api.validators.MethodValidationModel;
 import io.github.jwdeveloper.reflect.api.validators.ValidationModel;
 import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
 import io.github.jwdeveloper.reflect.api.validators.Valitable;
-import io.github.jwdeveloper.reflect.implementation.Visibility;
+import io.github.jwdeveloper.reflect.api.builders.common.Visibility;
 
 import java.lang.reflect.Executable;
 import java.lang.reflect.Member;

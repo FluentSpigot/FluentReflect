@@ -1,15 +1,13 @@
 package io.github.jwdeveloper.reflect.implementation.builders;
 
 import io.github.jwdeveloper.reflect.api.builders.FieldBuilder;
-import io.github.jwdeveloper.reflect.api.builders.MethodBuilder;
 import io.github.jwdeveloper.reflect.api.builders.common.Buildable;
 import io.github.jwdeveloper.reflect.api.matcher.ParameterMatcher;
 import io.github.jwdeveloper.reflect.api.validators.FieldValidationModel;
 
 import io.github.jwdeveloper.reflect.api.validators.ValidationResult;
-import io.github.jwdeveloper.reflect.implementation.Visibility;
+import io.github.jwdeveloper.reflect.api.builders.common.Visibility;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.util.function.Consumer;
 

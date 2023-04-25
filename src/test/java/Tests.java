@@ -5,10 +5,38 @@ public class Tests {
     @Test
     public void ShouldFindClass() throws Exception {
         var reflect = new FluentReflect("1.8.8");
+
+
+        var exampleEnum = reflect
+                .findEnum()
+                .forAnyVersion(finder ->
+                {
+                    finder.withPublic();
+                    finder.withValuesCount(4);
+                    finder.withName("resources._v_1_0_0.ExampleEnum");
+                }).find();
+
         var exampleClass = reflect.findClass()
                 .forVersion("1.8.8", finder ->
                 {
                     finder.withName("resources._v_1_0_0.ExampleClass");
+                })
+                .find();
+
+
+        var exampleNestedEnum = exampleClass.findEnum()
+                .forAnyVersion(finder ->
+                {
+                    finder.withName("EnumInside");
+                    finder.withValuesCount(2);
+                })
+                .find();
+
+        var exampleNestedInParentEnum = exampleClass.findEnum()
+                .forAnyVersion(finder ->
+                {
+                    finder.withName("EnumInsideParent");
+                    finder.withValuesCount(2);
                 })
                 .find();
 
@@ -42,12 +70,13 @@ public class Tests {
                     finder.withParameter(String.class, "casd");
                     finder.withParameterMatcher(input ->
                     {
-                       return new Object[]{input[1],input[2]};
+                        return new Object[]{input[1], input[2]};
                     });
                 })
                 .find();
 
-        var instance = myConstructor.newInstance(false,12,"siema");
+
+        var instance = myConstructor.newInstance(false, 12, "siema");
 //    private static Integer myValue = 10;
     }
 

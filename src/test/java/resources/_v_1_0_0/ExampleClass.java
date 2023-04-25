@@ -5,6 +5,11 @@ public class ExampleClass extends ExampleClassParent implements ExampleClassInte
     private static Integer myValue = 10;
 
 
+    public enum EnumInside
+    {
+        A,B
+    }
+
 
     private ExampleClass(int a, String b)
     {

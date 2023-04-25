@@ -2,25 +2,20 @@ package io.github.jwdeveloper.reflect.api.validators;
 
 import io.github.jwdeveloper.reflect.api.builders.common.Visibility;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class ValidationModel
+@EqualsAndHashCode(callSuper = false)
+public class EnumValidatorModel
 {
-    private String type;
+    private Class<?> locationClass;
+    private String superClass;
     private String name;
+    private int valuesCount = -1;
     private Visibility visibility = Visibility.PUBLIC;
-    private boolean isStatic;
-    private boolean isAbstract;
-    private boolean isFinal;
-
 
     public boolean hasName()
     {
         return name != null;
-    }
-
-    public boolean hasReturnType()
-    {
-        return type != null;
     }
 }

@@ -5,7 +5,7 @@ import io.github.jwdeveloper.reflect.api.builders.common.Buildable;
 import io.github.jwdeveloper.reflect.api.matcher.ParameterMatcher;
 import io.github.jwdeveloper.reflect.api.validators.ConstructorValidationModel;
 import io.github.jwdeveloper.reflect.api.validators.MethodValidationModel;
-import io.github.jwdeveloper.reflect.implementation.Visibility;
+import io.github.jwdeveloper.reflect.api.builders.common.Visibility;
 
 
 public class JavaConstructorBuilder implements ConstructorBuilder<JavaConstructorBuilder>, Buildable<ConstructorValidationModel> {
