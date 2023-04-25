@@ -1,2 +1,6 @@
 rootProject.name = 'fluent-reflect'
+include 'examples'
+include 'core'
+include 'examples'
+include 'documentation'
 
