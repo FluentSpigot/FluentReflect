@@ -14,15 +14,16 @@ import io.github.jwdeveloper.reflect.implementation.validators.JavaClassValidato
 import io.github.jwdeveloper.reflect.implementation.validators.JavaConstructorValidator;
 import io.github.jwdeveloper.reflect.implementation.validators.JavaFieldValidator;
 import io.github.jwdeveloper.reflect.implementation.validators.JavaMethodValidator;
+import lombok.Getter;
 
 public class FluentReflect {
 
+    @Getter
     private final String version;
     public FluentReflect(String version)
     {
         this.version = version;
     }
-
 
     public FluentBuilder<JavaClassBuilder, JavaClassModel> findClass() {
         return new FluentBuilder<JavaClassBuilder, JavaClassModel>(
