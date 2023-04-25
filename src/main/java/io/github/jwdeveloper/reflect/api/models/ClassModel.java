@@ -1,22 +1,21 @@
 package io.github.jwdeveloper.reflect.api.models;
 
 import io.github.jwdeveloper.reflect.implementation.FluentBuilder;
-import io.github.jwdeveloper.reflect.implementation.builders.JavaClassBuilder;
-import io.github.jwdeveloper.reflect.implementation.builders.JavaConstructorBuilder;
-import io.github.jwdeveloper.reflect.implementation.builders.JavaFieldBuilder;
-import io.github.jwdeveloper.reflect.implementation.builders.JavaMethodBuilder;
-import io.github.jwdeveloper.reflect.implementation.models.JavaClassModel;
-import io.github.jwdeveloper.reflect.implementation.models.JavaConstructorModel;
-import io.github.jwdeveloper.reflect.implementation.models.JavaFieldModel;
-import io.github.jwdeveloper.reflect.implementation.models.JavaMethodModel;
+import io.github.jwdeveloper.reflect.implementation.builders.*;
 
-public interface ClassModel
-{
-     FluentBuilder<JavaClassBuilder, JavaClassModel> findClass();
+public interface ClassModel {
 
-     FluentBuilder<JavaMethodBuilder, JavaMethodModel> findMethod();
+    Class<?> getClassType();
 
-     FluentBuilder<JavaFieldBuilder, JavaFieldModel> findField();
+    String getVersion();
 
-     FluentBuilder<JavaConstructorBuilder, JavaConstructorModel> findConstructor();
+    FluentBuilder<JavaClassBuilder, ClassModel> findClass();
+
+    FluentBuilder<JavaEnumBuilder, EnumModel> findEnum();
+
+    FluentBuilder<JavaMethodBuilder, MethodModel> findMethod();
+
+    FluentBuilder<JavaFieldBuilder, FieldModel> findField();
+
+    FluentBuilder<JavaConstructorBuilder, ConstructorModel> findConstructor();
 }

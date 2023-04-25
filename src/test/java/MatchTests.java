@@ -10,6 +10,8 @@ public class MatchTests {
     @ValueSource(strings = {"1.0.0", "1.0.1"})
     public void shouldGetParamsBaseOfVersion(String version) throws Exception {
         var reflect = new FluentReflect(version);
+
+
         var classModel = reflect.findClass()
                 .forVersion("1.0.0", finder ->
                 {
@@ -51,9 +53,9 @@ public class MatchTests {
                 {
                     finder.withPublic();
                     finder.withName("publicStuffV1");
-                    finder.withParameterMatcher(e ->
+                    finder.withParameterMatcher(parameter ->
                     {
-                        return new Object[]{e[0], e[1]};
+                        return new Object[]{parameter[0], parameter[1]};
                     });
                 })
                 .find();
@@ -66,7 +68,7 @@ public class MatchTests {
                 .tryFind();
 
 
-        var result = method.invoke(instance, 1, "siema", false);
+        var result = method.invoke(instance, 1, "Hello", false);
         if (field != null) {
             Assertions.assertEquals(Integer.class, field.getField().getType());
 

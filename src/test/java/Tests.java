@@ -2,10 +2,10 @@ import io.github.jwdeveloper.reflect.implementation.FluentReflect;
 import org.junit.jupiter.api.Test;
 
 public class Tests {
+
     @Test
     public void ShouldFindClass() throws Exception {
         var reflect = new FluentReflect("1.8.8");
-
 
         var exampleEnum = reflect
                 .findEnum()
