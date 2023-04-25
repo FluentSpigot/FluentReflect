@@ -15,7 +15,7 @@ public class JavaMethodValidator extends JavaValidator implements Validator<Meth
     @Override
     public JavaMethodModel validate(MethodValidationModel model, String version) throws ValidationException {
         var parent = model.getParentClass();
-        var result = this.checkClasses(model, parent, Class::getMethods, this::validateMethod);
+        var result = this.checkClasses(model, parent, Class::getDeclaredMethods, this::validateMethod);
         if (!result.isValid()) {
             throw new MethodValidationException(model,version,result);
         }
@@ -25,12 +25,11 @@ public class JavaMethodValidator extends JavaValidator implements Validator<Meth
 
     private ValidationResult validateMethod(Method method, MethodValidationModel model) {
 
-
         if (model.hasReturnType() && !model.getReturnType().equalsIgnoreCase(method.getReturnType().getName()))
             return new ValidationResult(false, method, "different return type");
 
         if (model.hasName() && !method.getName().equalsIgnoreCase(model.getName()))
-            return new ValidationResult(false, method, "name difference");
+             return new ValidationResult(false, method, "name difference");
 
         var visibilityResult = checkVisibility(method, model.getVisibility());
         if (!visibilityResult.isValid()) {
