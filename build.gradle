@@ -1,33 +1,16 @@
 plugins {
     id 'java'
     id 'maven-publish'
-
-}
-apply plugin: 'maven-publish'
-group 'io.github.jwdeveloper.reflect'
-version '1.0.8'
-
-
-repositories {
-    mavenCentral()
-    mavenLocal()
 }
 
-java {
 
-    withSourcesJar()
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'io.github.jwdeveloper.reflect'
-            artifactId = 'fluent-reflect'
-            version = '1.0.8'
-            from components.java
-        }
+allprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
     }
 }
+
 
 dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'

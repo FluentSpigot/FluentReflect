@@ -11,6 +11,18 @@ repositories {
     mavenLocal()
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'io.github.jwdeveloper'
+                artifactId = 'fluent-reflect'
+                version = '1.0.8'
+            }
+        }
+    }
+}
+
 java {
 
     withSourcesJar()
