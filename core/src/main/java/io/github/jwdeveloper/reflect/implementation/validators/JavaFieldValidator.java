@@ -19,15 +19,19 @@ public class JavaFieldValidator extends JavaValidator implements Validator<Field
     @Override
     public JavaFieldModel validate(FieldValidationModel model, String version) throws ValidationException {
         var parent = model.getParentClass();
-        try
+        if(model.hasType())
         {
-            var clazz = Class.forName(model.getType(), false, this.getClass().getClassLoader());
-            model.setClassType(clazz);
+            try
+            {
+                var clazz = Class.forName(model.getType(), false, this.getClass().getClassLoader());
+                model.setClassType(clazz);
+            }
+            catch (Exception e)
+            {
+                throw new ValidationException("Class for Field type not exists "+model.getType()+" "+e.getMessage());
+            }
         }
-        catch (Exception e)
-        {
-            throw new ValidationException("Class for Field type not exists "+model.getType()+" "+e.getMessage());
-        }
+
 
         var validation = this.checkClasses(model, parent, Class::getDeclaredFields, this::validateField);
         if (!validation.isValid()) {
